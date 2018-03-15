@@ -3,15 +3,11 @@ package expivider.expividerandroid;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class LoginActivity extends AppCompatActivity {
+public class PostsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_post);
-    }
-
-    public void submitCredentials() {
-
+        setContentView(R.layout.activity_posts);
     }
 }
