@@ -4,11 +4,9 @@ import android.util.Log;
 
 import com.android.volley.Response;
 
-import org.json.JSONObject;
-
 import expivider.expividerandroid.observer.IObserver;
 
-public class ResponseListener implements Response.Listener<JSONObject> {
+public class ResponseListener<T> implements Response.Listener<T> {
 
     private IObserver source;
 
@@ -17,10 +15,10 @@ public class ResponseListener implements Response.Listener<JSONObject> {
     }
 
     @Override
-    public void onResponse(JSONObject object) {
+    public  void onResponse(T object) {
 
         Log.i("response", object.toString());
         //checking response
-        source.startIntent();
+        source.completedRequest();
     }
 }

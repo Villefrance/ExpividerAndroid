@@ -4,18 +4,25 @@ import android.app.DownloadManager;
 import android.content.ContentProvider;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import expivider.expividerandroid.model.Post;
 import expivider.expividerandroid.observer.IObserver;
 import expivider.expividerandroid.response.ResponseListener;
 
@@ -66,7 +73,7 @@ public class DataService implements IDataService {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, BASE_URL+LOGIN_URL, loginPost, new ResponseListener(source), new Response.ErrorListener() {
+                (Request.Method.POST, BASE_URL+LOGIN_URL, loginPost, new ResponseListener<JSONObject>(source), new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -84,11 +91,32 @@ public class DataService implements IDataService {
     @Override
     public RequestQueue getRequestQueue() {
         if(queue == null) {
-            //this ensures that we get the application context based on whatever appcontext used...
+            //this ensures that we get the application context based on whatever app context used...
             queue = Volley.newRequestQueue(mCtx.getApplicationContext());
             Log.i("queue", "queue got set");
         }
         return queue;
+    }
+
+    @Override
+    public void getPosts(ArrayAdapter<Post> adapter) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, BASE_URL + POSTS_URL, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                //Conversion of json array of posts to Post objects and add to the param adapter...
+
+
+            }},
+                new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error", error.toString());
+                }
+
+        });
+
     }
 
     private <T> void addToRequestQueue(Request<T> req) {

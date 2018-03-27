@@ -76,4 +76,9 @@ public class Post {
     public void setNumberOfApplications(int numberOfApplications) {
         this.numberOfApplications = numberOfApplications;
     }
+
+    @Override
+    public String toString() {
+        return companyName + " : " + title;
+    }
 }

@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements IObserver{
     }
 
     @Override
-    public void startIntent() {
+    public void completedRequest() {
         Intent intent = new Intent(this, PostsActivity.class);
 
         startActivity(intent);

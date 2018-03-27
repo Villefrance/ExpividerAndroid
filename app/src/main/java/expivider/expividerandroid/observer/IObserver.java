@@ -2,5 +2,5 @@ package expivider.expividerandroid.observer;
 
 public interface IObserver {
 
-    void startIntent();
+    void completedRequest();
 }
