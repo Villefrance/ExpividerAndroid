@@ -14,12 +14,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import expivider.expividerandroid.model.Post;
@@ -99,13 +102,20 @@ public class DataService implements IDataService {
     }
 
     @Override
-    public void getPosts(ArrayAdapter<Post> adapter) {
+    public void getPosts(final ArrayAdapter<Post> adapter) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, BASE_URL + POSTS_URL, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
                 //Conversion of json array of posts to Post objects and add to the param adapter...
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<Post>>() {}.getType();
+                List<Post> posts =  gson.fromJson(response.toString(), listType);
 
+                for(Post post : posts) {
+                    Log.i("Post", post.toString());
+                    adapter.add(post);
+                }
 
             }},
                 new Response.ErrorListener() {
@@ -116,6 +126,8 @@ public class DataService implements IDataService {
                 }
 
         });
+
+        addToRequestQueue(jsonArrayRequest);
 
     }
 

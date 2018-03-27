@@ -3,7 +3,7 @@ package expivider.expividerandroid.model;
 public class Post {
 
     private String id;
-    private String companyName;
+    private String company_name;
     private String title;
     private String description;
     private String type;
@@ -11,9 +11,9 @@ public class Post {
     private int numberOfApplications;
 
 
-    public Post(String id, String companyName, String title, String description, String type, String date, int numberOfApplications) {
+    public Post(String id, String company_name, String title, String description, String type, String date, int numberOfApplications) {
         this.id = id;
-        this.companyName = companyName;
+        this.company_name = company_name;
         this.title = title;
         this.description = description;
         this.type = type;
@@ -30,11 +30,11 @@ public class Post {
     }
 
     public String getCompanyName() {
-        return companyName;
+        return company_name;
     }
 
     public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+        this.company_name = companyName;
     }
 
     public String getTitle() {
@@ -79,6 +79,6 @@ public class Post {
 
     @Override
     public String toString() {
-        return companyName + " : " + title;
+        return company_name + " : " + title;
     }
 }
