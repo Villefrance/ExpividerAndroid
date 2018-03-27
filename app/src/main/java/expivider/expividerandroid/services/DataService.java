@@ -52,11 +52,14 @@ public class DataService implements IDataService {
     @Override
     public void login(String username, String password, IObserver source) {
 
+        if(username == null || password == null) {
+            return;
+        }
 
         JSONObject loginPost = new JSONObject();
         try {
-            loginPost.put("email", "kv@expivider.dk");
-            loginPost.put("password", "1234");
+            loginPost.put("email", username);
+            loginPost.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
