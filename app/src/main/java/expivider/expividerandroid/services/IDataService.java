@@ -18,4 +18,6 @@ public interface IDataService {
 
     void getPosts(ArrayAdapter<Post> adapter);
 
+    void createPost(String title, String description, String type, IObserver source);
+
 }

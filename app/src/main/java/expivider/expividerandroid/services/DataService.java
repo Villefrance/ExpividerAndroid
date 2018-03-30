@@ -131,6 +131,29 @@ public class DataService implements IDataService {
 
     }
 
+    @Override
+    public void createPost(String title, String description, String type, IObserver source) {
+
+        JSONObject post = new JSONObject();
+
+        try {
+            post.put("title", title);
+            post.put("description", description);
+            post.put("type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL + POSTS_URL, post, new ResponseListener<JSONObject>(source), new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error Request", error.toString());
+            }
+        });
+
+        addToRequestQueue(jsonObjectRequest);
+    }
+
     private <T> void addToRequestQueue(Request<T> req) {
         Log.i("queue", req.toString());
         getRequestQueue().add(req);
