@@ -23,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.net.CookieHandler;
+import java.net.CookieManager;
 import java.util.List;
 
 import expivider.expividerandroid.model.Post;
@@ -38,12 +40,15 @@ public class DataService implements IDataService {
     private static IDataService instance;
     private RequestQueue queue;
     private static Context mCtx;
+    private CookieManager manager;
 
     private DataService(Context context) {
         mCtx = context;
         queue = getRequestQueue();
 
-        //Neeed to setup cache here based on the queue...
+        //Cookiehandling...
+        manager = new CookieManager();
+        CookieHandler.setDefault(manager);
     }
 
 
