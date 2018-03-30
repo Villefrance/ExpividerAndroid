@@ -3,4 +3,6 @@
     <string name="email_input">Enter your email</string>
     <string name="password_input">Enter your password</string>
     <string name="submit_credentials">Login</string>
+    <string name="default_email">kv@expivider.dk</string>
+    <string name="default_password">1234</string>
 </resources>
