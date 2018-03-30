@@ -1,6 +1,7 @@
 package expivider.expividerandroid.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Post implements Serializable{
 
@@ -11,9 +12,10 @@ public class Post implements Serializable{
     private String type;
     private String date;
     private int numberOfApplications;
+    private List<Application> applications;
 
 
-    public Post(String id, String company_name, String title, String description, String type, String date, int numberOfApplications) {
+    public Post(String id, String company_name, String title, String description, String type, String date, int numberOfApplications, List<Application> applications) {
         this.id = id;
         this.company_name = company_name;
         this.title = title;
@@ -21,6 +23,23 @@ public class Post implements Serializable{
         this.type = type;
         this.date = date;
         this.numberOfApplications = numberOfApplications;
+        this.applications = applications;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public  List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications( List<Application> applications) {
+        this.applications = applications;
     }
 
     public String getId() {
