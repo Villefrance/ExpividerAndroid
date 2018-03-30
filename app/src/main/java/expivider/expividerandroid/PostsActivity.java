@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,11 +23,14 @@ public class PostsActivity extends AppCompatActivity implements IObserver {
     private ArrayAdapter<Post> adapter;
     private List<Post> posts;
     private ListView postListView;
+    private AppCompatActivity postActivivy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posts);
+
+        postActivivy = this;
 
         postListView = (ListView) findViewById(R.id.postListView);
 
@@ -37,6 +41,20 @@ public class PostsActivity extends AppCompatActivity implements IObserver {
 
         //Datasevice call parsing the adapter
         dataService.getPosts(adapter);
+
+        //Add onItemClickListener to the listview
+        postListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(postActivivy, SinglePostActivity.class);
+                Post selectedPost = (Post) postListView.getAdapter().getItem(i);
+
+                intent.putExtra("post", selectedPost);
+
+                startActivity(intent);
+
+            }
+        });
     }
 
 

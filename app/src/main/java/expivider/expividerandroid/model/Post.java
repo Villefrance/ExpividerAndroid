@@ -1,6 +1,8 @@
 package expivider.expividerandroid.model;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable{
 
     private String id;
     private String company_name;
