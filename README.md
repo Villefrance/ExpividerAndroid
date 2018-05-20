@@ -12,5 +12,5 @@ This API is hosted on a free tier at [Heroku](https://www.heroku.com), which mea
 4. When the app loads in the emulator, press the Login-button (the credentials should already be filled out for you).
 5. **IMPORTANT! Wait for up to 60 seconds, since the API being contacted by the app may be sleeping as described above!**
 6. You are now logged in as an Employer and the app should show current posts on the API in a list. You now have 2 options:
-   a. Create a new post by clicking the "Create Post"-button at the bottom and fill in the name of the post, a description and whether you are creating a post for an internship or an apprentice. Confirm by clicking "Create Post" again.
-   b. Click any of the posts in the list, which will take you to another screen showing the applications currently made to that post (if any).
+   - Create a new post by clicking the "Create Post"-button at the bottom and fill in the name of the post, a description and whether you are creating a post for an internship or an apprentice. Confirm by clicking "Create Post" again.
+   - Click any of the posts in the list, which will take you to another screen showing the applications currently made to that post (if any).
